@@ -19,13 +19,13 @@ public class Main {
             // 创建查询语句
             stmt = conn.createStatement();
 
-//            stmt.execute("INSERT INTO user (username, age, code, address, phone) VALUES ('高少云', '20', '1234567890', '110', '114')");
+            // stmt.execute("INSERT INTO user (username, age, code, address, phone) VALUES ('高少云', '20', '1234567890', '110', '114')");
 
             // update
-//            stmt.executeUpdate("UPDATE user set username='高少云2' WHERE username = '高少云'");
+            // stmt.executeUpdate("UPDATE user set username='高少云2' WHERE username = '高少云'");
 
             // delete
-//            stmt.executeUpdate("DELETE FROM user WHERE id = 高少云2");
+            // stmt.executeUpdate("DELETE FROM user WHERE id = 高少云2");
 
             // Read
             // 倒序
