@@ -13,32 +13,37 @@ public class Main {
         ResultSet rs = null;
 
         try {
-            // 连接数据库
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3307/dev", "root", "111111");
+            // Connect to the database
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3307/dev2", "root", "111111");
 
-            // 创建查询语句
             stmt = conn.createStatement();
 
-            // stmt.execute("INSERT INTO user (username, age, code, address, phone) VALUES ('高少云', '20', '1234567890', '110', '114')");
-
-            // update
-            // stmt.executeUpdate("UPDATE user set username='高少云2' WHERE username = '高少云'");
-
-            // delete
-            // stmt.executeUpdate("DELETE FROM user WHERE id = 高少云2");
-
             // Read
-            // 倒序
-            rs = stmt.executeQuery("SELECT * FROM user order by id desc limit 10");
+            rs = stmt.executeQuery("SELECT * FROM grades");
+            // sum of grade
+            double totalGrade = 0;
+            // count of grade
+            int gradeCount = 0;
 
-            // 1. 处理查询结果
+            // 1. query result
             while (rs.next()) {
-                // 读取数据并进行处理
+                // read data and display
                 int id = rs.getInt("id");
-                String name = rs.getString("username");
-                System.out.println("ID: " + id + ", Name: " + name);
+                String courseName = rs.getString("courseName");
+                String gradeName = rs.getString("gradeName");
+                String grade = rs.getString("grade");
+                System.out.println("ID: " + id + "," + courseName + "," + gradeName + "," + grade);
+                totalGrade += Double.parseDouble(grade);
+                gradeCount++;
             }
 
+            // average of grade
+            if (gradeCount > 0) {
+                double averageGrade = totalGrade / gradeCount;
+                System.out.println("Grade Average: " + averageGrade);
+            } else {
+                System.out.println("No grade found");
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
